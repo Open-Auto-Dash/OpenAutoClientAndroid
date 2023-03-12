@@ -32,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
             //decode location
             String[] locationArray = location.split("[^,]*(?=\\\\?)");
 
-            Log.d(TAG, "onCreate: Striped string is: " + Arrays.toString(locationArray));
+            String latLongStr = location.split(":")[1].split("\\?")[0]; // extract "43.5626795,-80.66848"
+            String[] latLongArr = latLongStr.split(","); // split into latitude and longitude values
+            double latitude = Double.parseDouble(latLongArr[0]); // convert latitude to double
+            double longitude = Double.parseDouble(latLongArr[1]); // convert longitude to double
 
-
-            Toast.makeText(this, location, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, latitude + ":" + longitude, Toast.LENGTH_LONG).show();
         }
     }
 }
