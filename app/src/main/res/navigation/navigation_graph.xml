@@ -9,5 +9,22 @@
         android:id="@+id/mainFragment"
         android:name="com.openautodash.client.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_climateFragment"
+            app:destination="@id/climateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.openautodash.client.ui.main.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/climateFragment"
+        android:name="com.openautodash.client.ui.main.ClimateFragment"
+        android:label="fragment_climate"
+        tools:layout="@layout/fragment_climate" />
 </navigation>

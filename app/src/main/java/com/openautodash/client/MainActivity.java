@@ -1,6 +1,8 @@
 package com.openautodash.client;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,15 +16,23 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private NavController navController;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow();
-        }
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.container, MainFragment.newInstance())
+//                    .commitNow();
+//        }
+
+        // Get the NavController from the NavHostFragment
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.navHostFragment);
+        navController = navHostFragment.getNavController();
 
         Uri locationUri = getIntent().getData();
 
@@ -38,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             double longitude = Double.parseDouble(latLongArr[1]); // convert longitude to double
 
             Toast.makeText(this, latitude + ":" + longitude, Toast.LENGTH_LONG).show();
+
+            navController.navigate(R.id.action_mainFragment_to_mapsFragment);
         }
     }
 }
