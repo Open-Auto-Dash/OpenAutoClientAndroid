@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#17202b</color>
+    <color name="colorPrimaryDark">#506580</color>
+    <color name="colorAccent">#506580</color>
+    <color name="colorForeground">#17202b</color>
+
+    <color name="colorButton">@color/colorPrimary</color>
+    <color name="colorButtonLight">#232e37</color>
+    <color name="colorButtonShade">#3d4d5d</color>
+    <color name="colorButtonPressed">#990C9592</color>
+    <color name="colorButtonGradientOutside">#10cbc8</color>
+    <color name="colorButtonGradientCenter">#053d3c</color>
+    <color name="colorButtonDanger">#d9534f</color>
+    <color name="colorButtonPressedDanger">#d9534f</color>
+    <color name="colorButtonDangerGradientOutside">#FFEA5B5B</color>
+    <color name="colorButtonDangerGradientCenter">#FF150204</color>
+    <color name="colorButtonGetApp">#01875f</color>
+
+
+    <color name="recyclerViewSelectedColor">#D3D3D3</color>
+    <color name="colorBackgroundDefault">#17202b</color>
+    <color name="colorBackgroundLight">#283545</color>
+
+    <color name="colorEditTextSolid">#283545</color>
+    <color name="colorEditTextBoarder">#37485C</color>
+
+    <color name="colorTextTitle">#DFDFDF</color>
+    <color name="colorTextSubTitle">#D6D6D6</color>
+    <color name="colorTextBody">#B3B3B3</color>
+    <color name="colorTextThin">#878787</color>
+
+    <color name="colorPositive">#0959d2</color>
+    <color name="colorBlueLight">#E1EDFF</color>
+
+    <color name="colorSignalBar">#D4DBE6</color>
+    <color name="colorSignalFill">#404040</color>
+
+    <color name="colorBold">#1f1f1f</color>
+    <color name="colorSemiBold">#494949</color>
+    <color name="colorRegular">#545454</color>
+    <color name="colorSemiLight">#959595</color>
+    <color name="colorLight">#BFBFBF</color>
+    <color name="colorBright">#FAFAFA</color>
+
+
+    <color name="colorIconsDefault">#737373</color>
+</resources>
