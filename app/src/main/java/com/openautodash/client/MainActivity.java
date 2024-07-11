@@ -4,20 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.openautodash.client.services.ForegroundService;
 import com.openautodash.client.ui.main.MainFragment;
+import com.openautodash.client.ui.main.MainFragmentDirections;
 
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private NavController navController;
-
+    public NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,17 +46,36 @@ public class MainActivity extends AppCompatActivity {
         if (locationUri != null) {
             String location = locationUri.toString();
             Log.d(TAG, "onCreate: Location String :" + location);
-            //decode location
-            String[] locationArray = location.split("[^,]*(?=\\\\?)");
 
-            String latLongStr = location.split(":")[1].split("\\?")[0]; // extract "43.5626795,-80.66848"
-            String[] latLongArr = latLongStr.split(","); // split into latitude and longitude values
-            double latitude = Double.parseDouble(latLongArr[0]); // convert latitude to double
-            double longitude = Double.parseDouble(latLongArr[1]); // convert longitude to double
 
-            Toast.makeText(this, latitude + ":" + longitude, Toast.LENGTH_LONG).show();
+            navController.navigate(MainFragmentDirections.actionMainFragmentToMapsFragment().setLocationUri(location));
 
-            navController.navigate(R.id.action_mainFragment_to_mapsFragment);
+
+//            navController.navigate(R.id.action_mainFragment_to_mapsFragment);
         }
+        startScanningService();
+    }
+    private void startScanningService() {
+        if (!isServiceRunning(ForegroundService.class)) {
+            Intent serviceIntent = new Intent(this, ForegroundService.class);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                startForegroundService(serviceIntent);
+            } else {
+                startService(serviceIntent);
+            }
+        }
+    }
+
+    private boolean isServiceRunning(Class<?> serviceClass) {
+        Log.d(TAG, "isServiceRunning");
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                Log.d(TAG, "isServiceRunning: yes");
+                return true;
+            }
+        }
+        Log.d(TAG, "isServiceRunning: no");
+        return false;
     }
 }

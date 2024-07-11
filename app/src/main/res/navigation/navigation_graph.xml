@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_climateFragment"
             app:destination="@id/climateFragment" />
@@ -21,7 +23,13 @@
         android:id="@+id/mapsFragment"
         android:name="com.openautodash.client.ui.main.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="LocationUri"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="geo:43.5626795,-80.66848?q=43.5626795,-80.66848" />
+    </fragment>
     <fragment
         android:id="@+id/climateFragment"
         android:name="com.openautodash.client.ui.main.ClimateFragment"
